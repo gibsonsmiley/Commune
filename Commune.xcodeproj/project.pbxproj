@@ -8,20 +8,67 @@
 
 /* Begin PBXBuildFile section */
 		F0F9FFAE1C8E1C5D005A2EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAD1C8E1C5D005A2EE7 /* AppDelegate.swift */; };
-		F0F9FFB01C8E1C5D005A2EE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAF1C8E1C5D005A2EE7 /* ViewController.swift */; };
+		F0F9FFB01C8E1C5D005A2EE7 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */; };
 		F0F9FFB31C8E1C5D005A2EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB11C8E1C5D005A2EE7 /* Main.storyboard */; };
 		F0F9FFB51C8E1C5D005A2EE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */; };
 		F0F9FFB81C8E1C5D005A2EE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB61C8E1C5D005A2EE7 /* LaunchScreen.storyboard */; };
+		F0F9FFC11C8E2036005A2EE7 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFBF1C8E202F005A2EE7 /* Firebase.framework */; };
+		F0F9FFC21C8E2036005A2EE7 /* Firebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFBF1C8E202F005A2EE7 /* Firebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F0F9FFC51C8E2041005A2EE7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFC41C8E2041005A2EE7 /* libc++.tbd */; };
+		F0F9FFC71C8E2049005A2EE7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFC61C8E2049005A2EE7 /* Security.framework */; };
+		F0F9FFC91C8E2051005A2EE7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFC81C8E2051005A2EE7 /* CFNetwork.framework */; };
+		F0F9FFCB1C8E206D005A2EE7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFCA1C8E206D005A2EE7 /* SystemConfiguration.framework */; };
+		F0F9FFCD1C8E2077005A2EE7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F9FFCC1C8E2077005A2EE7 /* libicucore.tbd */; };
+		F0F9FFD01C8E21AB005A2EE7 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFCF1C8E21AB005A2EE7 /* FirebaseController.swift */; };
+		F0F9FFD21C8E250F005A2EE7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFD11C8E250F005A2EE7 /* Post.swift */; };
+		F0F9FFD41C8E2515005A2EE7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFD31C8E2515005A2EE7 /* User.swift */; };
+		F0F9FFD61C8E251A005A2EE7 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFD51C8E251A005A2EE7 /* Room.swift */; };
+		F0F9FFD91C8E28C4005A2EE7 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFD81C8E28C4005A2EE7 /* PostController.swift */; };
+		F0F9FFDB1C8E28CB005A2EE7 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDA1C8E28CB005A2EE7 /* UserController.swift */; };
+		F0F9FFDD1C8E28D2005A2EE7 /* RoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDC1C8E28D2005A2EE7 /* RoomController.swift */; };
+		F0F9FFE01C8E2C47005A2EE7 /* AuthPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */; };
+		F0F9FFE31C8E3FD8005A2EE7 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */; };
+		F0F9FFE51C8E4014005A2EE7 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F0F9FFC31C8E2036005A2EE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0F9FFC21C8E2036005A2EE7 /* Firebase.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F0F9FFAA1C8E1C5D005A2EE7 /* Commune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Commune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F9FFAD1C8E1C5D005A2EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F0F9FFAF1C8E1C5D005A2EE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		F0F9FFB21C8E1C5D005A2EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0F9FFB71C8E1C5D005A2EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0F9FFB91C8E1C5D005A2EE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0F9FFBF1C8E202F005A2EE7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		F0F9FFC41C8E2041005A2EE7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F0F9FFC61C8E2049005A2EE7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F0F9FFC81C8E2051005A2EE7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F0F9FFCA1C8E206D005A2EE7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F0F9FFCC1C8E2077005A2EE7 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		F0F9FFCF1C8E21AB005A2EE7 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		F0F9FFD11C8E250F005A2EE7 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F0F9FFD31C8E2515005A2EE7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F0F9FFD51C8E251A005A2EE7 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		F0F9FFD81C8E28C4005A2EE7 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		F0F9FFDA1C8E28CB005A2EE7 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		F0F9FFDC1C8E28D2005A2EE7 /* RoomController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomController.swift; sourceTree = "<group>"; };
+		F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPageViewController.swift; sourceTree = "<group>"; };
+		F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
+		F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +76,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F9FFCD1C8E2077005A2EE7 /* libicucore.tbd in Frameworks */,
+				F0F9FFCB1C8E206D005A2EE7 /* SystemConfiguration.framework in Frameworks */,
+				F0F9FFC91C8E2051005A2EE7 /* CFNetwork.framework in Frameworks */,
+				F0F9FFC71C8E2049005A2EE7 /* Security.framework in Frameworks */,
+				F0F9FFC51C8E2041005A2EE7 /* libc++.tbd in Frameworks */,
+				F0F9FFC11C8E2036005A2EE7 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +93,7 @@
 			children = (
 				F0F9FFAC1C8E1C5D005A2EE7 /* Commune */,
 				F0F9FFAB1C8E1C5D005A2EE7 /* Products */,
+				F0F9FFCE1C8E209A005A2EE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +109,60 @@
 			isa = PBXGroup;
 			children = (
 				F0F9FFAD1C8E1C5D005A2EE7 /* AppDelegate.swift */,
-				F0F9FFAF1C8E1C5D005A2EE7 /* ViewController.swift */,
 				F0F9FFB11C8E1C5D005A2EE7 /* Main.storyboard */,
+				F0F9FFE11C8E2C50005A2EE7 /* View Controllers */,
+				F0F9FFDE1C8E2C24005A2EE7 /* Model Controllers */,
+				F0F9FFD71C8E2529005A2EE7 /* Models */,
 				F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */,
 				F0F9FFB61C8E1C5D005A2EE7 /* LaunchScreen.storyboard */,
 				F0F9FFB91C8E1C5D005A2EE7 /* Info.plist */,
 			);
 			path = Commune;
+			sourceTree = "<group>";
+		};
+		F0F9FFCE1C8E209A005A2EE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0F9FFCC1C8E2077005A2EE7 /* libicucore.tbd */,
+				F0F9FFCA1C8E206D005A2EE7 /* SystemConfiguration.framework */,
+				F0F9FFC81C8E2051005A2EE7 /* CFNetwork.framework */,
+				F0F9FFC61C8E2049005A2EE7 /* Security.framework */,
+				F0F9FFC41C8E2041005A2EE7 /* libc++.tbd */,
+				F0F9FFBF1C8E202F005A2EE7 /* Firebase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F0F9FFD71C8E2529005A2EE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F0F9FFD11C8E250F005A2EE7 /* Post.swift */,
+				F0F9FFD31C8E2515005A2EE7 /* User.swift */,
+				F0F9FFD51C8E251A005A2EE7 /* Room.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F0F9FFDE1C8E2C24005A2EE7 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F0F9FFCF1C8E21AB005A2EE7 /* FirebaseController.swift */,
+				F0F9FFD81C8E28C4005A2EE7 /* PostController.swift */,
+				F0F9FFDA1C8E28CB005A2EE7 /* UserController.swift */,
+				F0F9FFDC1C8E28D2005A2EE7 /* RoomController.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		F0F9FFE11C8E2C50005A2EE7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */,
+				F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */,
+				F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */,
+				F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +175,7 @@
 				F0F9FFA61C8E1C5D005A2EE7 /* Sources */,
 				F0F9FFA71C8E1C5D005A2EE7 /* Frameworks */,
 				F0F9FFA81C8E1C5D005A2EE7 /* Resources */,
+				F0F9FFC31C8E2036005A2EE7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,8 +237,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0F9FFB01C8E1C5D005A2EE7 /* ViewController.swift in Sources */,
+				F0F9FFD01C8E21AB005A2EE7 /* FirebaseController.swift in Sources */,
+				F0F9FFDD1C8E28D2005A2EE7 /* RoomController.swift in Sources */,
+				F0F9FFE51C8E4014005A2EE7 /* PostDetailTableViewController.swift in Sources */,
+				F0F9FFB01C8E1C5D005A2EE7 /* AddPostViewController.swift in Sources */,
+				F0F9FFE01C8E2C47005A2EE7 /* AuthPageViewController.swift in Sources */,
+				F0F9FFDB1C8E28CB005A2EE7 /* UserController.swift in Sources */,
+				F0F9FFD61C8E251A005A2EE7 /* Room.swift in Sources */,
 				F0F9FFAE1C8E1C5D005A2EE7 /* AppDelegate.swift in Sources */,
+				F0F9FFD91C8E28C4005A2EE7 /* PostController.swift in Sources */,
+				F0F9FFE31C8E3FD8005A2EE7 /* PostTableViewController.swift in Sources */,
+				F0F9FFD41C8E2515005A2EE7 /* User.swift in Sources */,
+				F0F9FFD21C8E250F005A2EE7 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +361,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Commune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gibsonsmiley.Commune;
@@ -260,6 +376,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Commune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gibsonsmiley.Commune;
