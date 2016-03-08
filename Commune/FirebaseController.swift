@@ -13,7 +13,7 @@ class FirebaseController {
     
     static let base = Firebase(url: "https://commune.firebaseio.com")
     
-    func dataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
+    static func dataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
         let baseForEndpoint = FirebaseController.base.childByAppendingPath(endpoint)
         
         baseForEndpoint.observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
@@ -25,7 +25,7 @@ class FirebaseController {
         })
     }
     
-    func observeDataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
+    static func observeDataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
         let baseForEndpoint = FirebaseController.base.childByAppendingPath(endpoint)
         
         baseForEndpoint.observeEventType(.Value, withBlock: { (snapshot) -> Void in

@@ -25,10 +25,11 @@ struct User: FirebaseType {
         return [kUsername: username, kEmail: email, kPassword: password]
     }
     
-    init(username: String, email: String, password: String) {
+    init(username: String, email: String, password: String, identifier: String?) {
         self.username = username
         self.email = email
         self.password = password
+        self.identifier = identifier
     }
     
     init?(json: [String : AnyObject], identifier: String) {

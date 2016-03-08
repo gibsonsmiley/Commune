@@ -14,6 +14,9 @@ class RoomController {
     var members: [User] = []
     
     func observePostsForRoomIdentifier(roomIdentifier: String, completion: (posts: [Post]) -> Void) {
-        FirebaseController.base.
+        
+    }
+    static func createRoom() {
+        
     }
 }
