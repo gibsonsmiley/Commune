@@ -27,6 +27,10 @@ class UserController {
         }
     }
     
+    ///////////////////////////////////////////////////////////////////////
+    /////////// I need a function to send posts to other people ///////////
+    ///////////////////////////////////////////////////////////////////////
+    
     static func userForIdentifier(identifier: String, completion: (user: User?) -> Void) {
         FirebaseController.dataAtEndpoint("users/\(identifier)") { (data) -> Void in
             if let data = data as? [String: AnyObject] {

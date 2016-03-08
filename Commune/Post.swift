@@ -11,37 +11,38 @@ import Foundation
 struct Post: FirebaseType {
     
     let kSender = "sender"
-    let kReceiver = "receiver"
+    let kRoom = "room"
     let kText = "text"
     let kName = "name"
     
-    let sender: String
+    let senderID: String
+    var sender: User?
     let name: String
-    let receiver: String
+    let roomID: String
     let text: String
     var identifier: String?
     var endpoint: String {
         return "posts"
     }
     var jsonValue: [String: AnyObject] {
-        return [kSender: sender, kName: name, kReceiver: receiver, kText: text]
+        return [kSender: senderID, kName: name, kRoom: roomID, kText: text]
     }
     
-    init(sender: String, name: String, receiver: String, text: String) {
-        self.sender = sender
+    init(senderID: String, name: String, roomID: String, text: String) {
+        self.senderID = senderID
         self.name = name
-        self.receiver = receiver
+        self.roomID = roomID
         self.text = text
     }
     
     init?(json: [String : AnyObject], identifier: String) {
-        guard let sender = json[kSender] as? String,
+        guard let senderID = json[kSender] as? String,
             let name = json[kName] as? String,
-        let receiver = json[kReceiver] as? String,
+        let roomID = json[kRoom] as? String,
         let text = json[kText] as? String else { return nil }
-        self.sender = sender
+        self.senderID = senderID
         self.name = name
-        self.receiver = receiver
+        self.roomID = roomID
         self.text = text
         self.identifier = identifier
     }

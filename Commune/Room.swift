@@ -11,12 +11,11 @@ import Foundation
 struct Room: FirebaseType {
     
     let kName = "name"
-    let kMembers = "member"
-    let kPosts = "posts"
+    let kUsers = "users"
     
     let name: String
-    let members: [User]?
-    let posts: [Post]?
+    var userIDs: [String] = []
+    var users: [User] = []
     var identifier: String?
     var endpoint: String {
         return "rooms"
@@ -25,18 +24,20 @@ struct Room: FirebaseType {
         return [kName: name]
     }
     
-    init(name: String, members: [User]?, posts: [Post]?) {
+    init(name: String, users: [User]) {
         self.name = name
-        self.members = []
-        self.posts = []
+        self.users = []
+        var identifiers: [String] = []
+        for user in users {
+            if let identifier = user.identifier {
+                identifier.append(identifier)
+            }
+        }
+        self.userIDs = identifiers
     }
     
     init?(json: [String : AnyObject], identifier: String) {
-        guard let name = json[kName] as? String,
-        let members = json[kMembers] as? [User]?,
-        let posts = json[kPosts] as? [Post]? else { return nil }
+        guard let name = json[kName] as? String else { return nil }
         self.name = name
-        self.members = []
-        self.posts = []
     }
 }
