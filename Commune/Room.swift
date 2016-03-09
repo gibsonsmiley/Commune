@@ -21,16 +21,16 @@ struct Room: FirebaseType {
         return "rooms"
     }
     var jsonValue: [String: AnyObject] {
-        return [kName: name]
+        return [kName: name, kUsers: userIDs]
     }
     
     init(name: String, users: [User]) {
         self.name = name
-        self.users = []
+        self.users = users
         var identifiers: [String] = []
         for user in users {
             if let identifier = user.identifier {
-                identifier.append(identifier)
+                identifiers.append(identifier)
             }
         }
         self.userIDs = identifiers
@@ -39,5 +39,9 @@ struct Room: FirebaseType {
     init?(json: [String : AnyObject], identifier: String) {
         guard let name = json[kName] as? String else { return nil }
         self.name = name
+        self.identifier = identifier
+        if let userDictionary = json[kUsers] as? [String: AnyObject] {
+            userIDs = Array(userDictionary.keys)
+        }
     }
 }

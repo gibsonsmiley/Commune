@@ -8,11 +8,9 @@
 
 import UIKit
 
-class AddPostViewController: UIViewController {
-
-    @IBOutlet weak var subjectTextField: UITextField!
-    @IBOutlet weak var sendToTextField: UITextField!
-    @IBOutlet weak var messageTextField: UITextField!
+class CreatePostViewController: UIViewController {
+    
+    @IBOutlet weak var postTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +22,13 @@ class AddPostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func sendButtonTapped(sender: AnyObject) {
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        //save and post dat shit
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

@@ -12,12 +12,10 @@ struct User: FirebaseType {
     
     let kUsername = "username"
     let kEmail = "email"
-    let kPassword = "password"
     let kRooms = "rooms"
     
     let username: String
     let email: String
-    let password: String
     var roomIDs: [String] = []
     var rooms: [Room] = []
     var identifier: String?
@@ -25,22 +23,19 @@ struct User: FirebaseType {
         return "users"
     }
     var jsonValue: [String: AnyObject] {
-        return [kUsername: username, kEmail: email, kPassword: password, kRooms: roomIDs]
+        return [kUsername: username, kEmail: email, kRooms: roomIDs]
     }
     
-    init(username: String, email: String, password: String) {
+    init(username: String, email: String, identifier: String? = nil) {
         self.username = username
         self.email = email
-        self.password = password
     }
     
     init?(json: [String : AnyObject], identifier: String) {
         guard let username = json[kUsername] as? String,
-        let email = json[kEmail] as? String,
-            let password = json[kPassword] as? String else { return nil }
+            let email = json[kEmail] as? String else { return nil }
         self.username = username
         self.email = email
-        self.password = password
         self.identifier = identifier
     }
 }

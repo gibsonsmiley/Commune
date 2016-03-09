@@ -1,5 +1,5 @@
 //
-//  PostTableViewController.swift
+//  PostDetailTableViewController.swift
 //  Commune
 //
 //  Created by Gibson Smiley on 3/7/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostTableViewController: UITableViewController {
+class RoomTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,22 +19,18 @@ class PostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        if UserController.currentUser == nil {
-            performSegueWithIdentifier("authModalSegue", sender: self)
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func addPostButtonTapped(sender: AnyObject) {
-    }
-    
     // MARK: - Table view data source
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

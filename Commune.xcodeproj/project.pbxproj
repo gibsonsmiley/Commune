@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0BB0ABD1C8F93AC0058F7FB /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB0ABC1C8F93AC0058F7FB /* CreateRoomViewController.swift */; };
 		F0F9FFAE1C8E1C5D005A2EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAD1C8E1C5D005A2EE7 /* AppDelegate.swift */; };
-		F0F9FFB01C8E1C5D005A2EE7 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */; };
+		F0F9FFB01C8E1C5D005A2EE7 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFAF1C8E1C5D005A2EE7 /* CreatePostViewController.swift */; };
 		F0F9FFB31C8E1C5D005A2EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB11C8E1C5D005A2EE7 /* Main.storyboard */; };
 		F0F9FFB51C8E1C5D005A2EE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */; };
 		F0F9FFB81C8E1C5D005A2EE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F9FFB61C8E1C5D005A2EE7 /* LaunchScreen.storyboard */; };
@@ -27,8 +28,8 @@
 		F0F9FFDB1C8E28CB005A2EE7 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDA1C8E28CB005A2EE7 /* UserController.swift */; };
 		F0F9FFDD1C8E28D2005A2EE7 /* RoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDC1C8E28D2005A2EE7 /* RoomController.swift */; };
 		F0F9FFE01C8E2C47005A2EE7 /* AuthPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */; };
-		F0F9FFE31C8E3FD8005A2EE7 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */; };
-		F0F9FFE51C8E4014005A2EE7 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */; };
+		F0F9FFE31C8E3FD8005A2EE7 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE21C8E3FD8005A2EE7 /* HomeTableViewController.swift */; };
+		F0F9FFE51C8E4014005A2EE7 /* RoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9FFE41C8E4014005A2EE7 /* RoomTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,9 +47,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F0BB0ABC1C8F93AC0058F7FB /* CreateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
 		F0F9FFAA1C8E1C5D005A2EE7 /* Commune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Commune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F9FFAD1C8E1C5D005A2EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		F0F9FFAF1C8E1C5D005A2EE7 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		F0F9FFB21C8E1C5D005A2EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0F9FFB71C8E1C5D005A2EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,8 +69,8 @@
 		F0F9FFDA1C8E28CB005A2EE7 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		F0F9FFDC1C8E28D2005A2EE7 /* RoomController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomController.swift; sourceTree = "<group>"; };
 		F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPageViewController.swift; sourceTree = "<group>"; };
-		F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
-		F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
+		F0F9FFE21C8E3FD8005A2EE7 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		F0F9FFE41C8E4014005A2EE7 /* RoomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				F0F9FFDF1C8E2C47005A2EE7 /* AuthPageViewController.swift */,
-				F0F9FFE21C8E3FD8005A2EE7 /* PostTableViewController.swift */,
-				F0F9FFE41C8E4014005A2EE7 /* PostDetailTableViewController.swift */,
-				F0F9FFAF1C8E1C5D005A2EE7 /* AddPostViewController.swift */,
+				F0F9FFE21C8E3FD8005A2EE7 /* HomeTableViewController.swift */,
+				F0BB0ABC1C8F93AC0058F7FB /* CreateRoomViewController.swift */,
+				F0F9FFE41C8E4014005A2EE7 /* RoomTableViewController.swift */,
+				F0F9FFAF1C8E1C5D005A2EE7 /* CreatePostViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -239,14 +242,15 @@
 			files = (
 				F0F9FFD01C8E21AB005A2EE7 /* FirebaseController.swift in Sources */,
 				F0F9FFDD1C8E28D2005A2EE7 /* RoomController.swift in Sources */,
-				F0F9FFE51C8E4014005A2EE7 /* PostDetailTableViewController.swift in Sources */,
-				F0F9FFB01C8E1C5D005A2EE7 /* AddPostViewController.swift in Sources */,
+				F0F9FFE51C8E4014005A2EE7 /* RoomTableViewController.swift in Sources */,
+				F0BB0ABD1C8F93AC0058F7FB /* CreateRoomViewController.swift in Sources */,
+				F0F9FFB01C8E1C5D005A2EE7 /* CreatePostViewController.swift in Sources */,
 				F0F9FFE01C8E2C47005A2EE7 /* AuthPageViewController.swift in Sources */,
 				F0F9FFDB1C8E28CB005A2EE7 /* UserController.swift in Sources */,
 				F0F9FFD61C8E251A005A2EE7 /* Room.swift in Sources */,
 				F0F9FFAE1C8E1C5D005A2EE7 /* AppDelegate.swift in Sources */,
 				F0F9FFD91C8E28C4005A2EE7 /* PostController.swift in Sources */,
-				F0F9FFE31C8E3FD8005A2EE7 /* PostTableViewController.swift in Sources */,
+				F0F9FFE31C8E3FD8005A2EE7 /* HomeTableViewController.swift in Sources */,
 				F0F9FFD41C8E2515005A2EE7 /* User.swift in Sources */,
 				F0F9FFD21C8E250F005A2EE7 /* Post.swift in Sources */,
 			);
@@ -406,6 +410,7 @@
 				F0F9FFBE1C8E1C5D005A2EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

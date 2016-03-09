@@ -27,11 +27,7 @@ class UserController {
         }
     }
     
-    ///////////////////////////////////////////////////////////////////////
-    /////////// I need a function to send posts to other people ///////////
-    ///////////////////////////////////////////////////////////////////////
-    
-    static func userForIdentifier(identifier: String, completion: (user: User?) -> Void) {
+    static func fetchUserForIdentifier(identifier: String, completion: (user: User?) -> Void) {
         FirebaseController.dataAtEndpoint("users/\(identifier)") { (data) -> Void in
             if let data = data as? [String: AnyObject] {
                 let user = User(json: data, identifier: identifier)
@@ -42,7 +38,7 @@ class UserController {
         }
     }
     
-    static func fetchUsers(completion: (keys: [String]) -> Void) {
+    static func fetchAllUsers(completion: (keys: [String]) -> Void) {
         FirebaseController.observeDataAtEndpoint("users") { (data) -> Void in
             if let users = data as? [String: AnyObject] {
                 let userKeys = Array(users.keys)
@@ -59,7 +55,7 @@ class UserController {
                 print("Error authenticating user: \(error.localizedDescription)")
                 completion(success: false, user: nil)
             } else {
-                UserController.userForIdentifier(authData.uid, completion: { (user) -> Void in
+                UserController.fetchUserForIdentifier(authData.uid, completion: { (user) -> Void in
                     if let user = user {
                         currentUser = user
                     }
@@ -76,10 +72,27 @@ class UserController {
                 completion(success: false, user: nil)
             } else {
                 if let uid = results["uid"] as? String {
-                    var user = User(username: username, email: email, password: password, identifier: uid)
+                    var user = User(username: username, email: email, identifier: uid)
                     user.save()
                 }
             }
         }
     }
-}
+    
+    static func logoutUser() {
+        FirebaseController.base.unauth()
+        UserController.currentUser = nil
+    }
+    
+    static func observeRoomsForUserID(user: User, completion: (rooms: [Room]?) -> Void) {
+        guard let identifier = user.identifier else { completion(rooms: nil); return }
+        FirebaseController.base.childByAppendingPath("rooms").queryEqualToValue("user").queryEqualToValue(identifier).observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+            if let roomDictionaries = snapshot.value as? [String: AnyObject] {
+                let rooms = roomDictionaries.flatMap({Room(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
+                completion(rooms: rooms)
+            } else {
+                completion(rooms: nil)
+            }
+        })
+    }
+} // END

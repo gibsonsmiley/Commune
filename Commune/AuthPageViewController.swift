@@ -50,7 +50,7 @@ class AuthPageViewController: UIViewController {
                 self.createAlert("Please provide a correct email address. 'Example@example.com", success: false)
             } else {
                 UserController.createUser(signupEmailTextField.text!, username: signupUsernameTextField.text!, password: signupPasswordTextField.text!) { (success, user) -> Void in
-                    if success, let _ = user {
+                    if success, let _ = UserController.currentUser {
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
                         self.createAlert("There was an error signing up! Please try again.", success: false)

@@ -9,40 +9,26 @@
 import Foundation
 
 class RoomController {
-    static let sharedInstance = RoomController()
-    var posts: [Post] = []
-    var members: [User] = []
     
-    func observePostsForRoomIdentifier(roomIdentifier: String, completion: (posts: [Post]) -> Void) {
-        FirebaseController.observeDataAtEndpoint("room") { (data) -> Void in
-            if let roomIdentifierDictionary = data as? [String: AnyObject] {
-                var posts: [Post] = []
-                let tunnel = dispatch_group_create()
-                for (posts, _) in roomIdentifierDictionary {
-                    dispatch_group_enter(tunnel)
-                    FirebaseController.dataAtEndpoint("room/posts/\(posts)", completion: { (data) -> Void in
-                        if let postsDictionary = data as? [String: AnyObject] {
-                            if let post = Post(json: postsDictionary, identifier: posts) {
-                                posts.append(post) // This should work... check with James
-                            }
-                        }
-                        dispatch_group_leave(tunnel)
-                    })
-                }
-                dispatch_group_notify(tunnel, dispatch_get_main_queue(), { () -> Void in
-                    self.posts = posts
-                })
+    static func observePostsForRoomID(roomID: String, completion: (posts: [Post]?) -> Void) {
+        FirebaseController.base.childByAppendingPath("posts").queryOrderedByChild("room").queryEqualToValue(roomID).observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            if let postDictionaries = snapshot.value as? [String: AnyObject] {
+                let posts = postDictionaries.flatMap({Post(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
+                let orderedPosts = PostController.orderPosts(posts)
+                completion(posts: orderedPosts)
+            } else {
+                completion(posts: nil)
             }
-        }
+        })
     }
     
-    static func createRoom(members: [User], name: String, posts: [Post], completion: (room: Room?) -> Void) {
-        var room = Room(name: name, members: members, posts: posts)
+    static func createRoom(users: [User], name: String, completion: (room: Room?) -> Void) {
+        var room = Room(name: name, users: users)
         room.save()
         if let identifier = room.identifier {
-            for var member in members {
-                member.identifier?.append(identifier)
-                member.save()
+            for var user in users {
+                user.roomIDs.append(identifier)
+                user.save()
             }
         }
     }
@@ -51,5 +37,34 @@ class RoomController {
         room.delete()
     }
     
+    static func fetchRoomForID(roomID: String, completion: (room: Room?) -> Void) {
+        FirebaseController.dataAtEndpoint("rooms/\(roomID)") { (data) -> Void in
+            if let data = data as? [String: AnyObject] {
+                let room = Room(json: data, identifier: roomID)
+                completion(room: room)
+            } else {
+                completion(room: nil)
+            }
+        }
+    }
     
+    static func fetchUsersForRoomID(room: Room, completion: (users: [User]?) -> Void) {
+        guard let identifier = room.identifier else {completion(users: nil); return}
+        FirebaseController.base.childByAppendingPath("users").queryOrderedByChild("rooms").queryEqualToValue(identifier).observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+            if let userDictionaries = snapshot.value as? [String: AnyObject] {
+                let users = userDictionaries.flatMap({User(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
+                completion(users: users)
+            } else {
+                completion(users: nil)
+            }
+        })
+    }
+    
+    static func orderRooms(rooms: [Room]) -> [Room] {
+        return rooms.sort({$0.0.identifier > $0.1.identifier})
+    }
+    
+//    static func leaveRoom() {}
+    
+//    static func joinRoom() {}
 }

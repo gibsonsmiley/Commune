@@ -13,11 +13,9 @@ struct Post: FirebaseType {
     let kSender = "sender"
     let kRoom = "room"
     let kText = "text"
-    let kName = "name"
     
     let senderID: String
     var sender: User?
-    let name: String
     let roomID: String
     let text: String
     var identifier: String?
@@ -25,23 +23,20 @@ struct Post: FirebaseType {
         return "posts"
     }
     var jsonValue: [String: AnyObject] {
-        return [kSender: senderID, kName: name, kRoom: roomID, kText: text]
+        return [kSender: senderID, kRoom: roomID, kText: text]
     }
     
-    init(senderID: String, name: String, roomID: String, text: String) {
+    init(senderID: String, roomID: String, text: String) {
         self.senderID = senderID
-        self.name = name
         self.roomID = roomID
         self.text = text
     }
     
     init?(json: [String : AnyObject], identifier: String) {
         guard let senderID = json[kSender] as? String,
-            let name = json[kName] as? String,
-        let roomID = json[kRoom] as? String,
-        let text = json[kText] as? String else { return nil }
+            let roomID = json[kRoom] as? String,
+            let text = json[kText] as? String else { return nil }
         self.senderID = senderID
-        self.name = name
         self.roomID = roomID
         self.text = text
         self.identifier = identifier
