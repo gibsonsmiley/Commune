@@ -9,6 +9,8 @@
 import UIKit
 
 class RoomTableViewController: UITableViewController {
+    
+    var room: Room?
 
     override func viewDidLoad() {
         super.viewDidLoad()

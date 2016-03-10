@@ -196,7 +196,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" textLabel="tPI-ll-gJ6" detailTextLabel="UR4-30-Pr1" style="IBUITableViewCellStyleSubtitle" id="zZT-ag-Opb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="roomCell" textLabel="tPI-ll-gJ6" detailTextLabel="UR4-30-Pr1" style="IBUITableViewCellStyleSubtitle" id="zZT-ag-Opb">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zZT-ag-Opb" id="xeP-yx-N1w">
@@ -272,6 +272,9 @@
                                 <rect key="frame" x="20" y="204" width="560" height="25"/>
                                 <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="twitter" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="roomMemberTextFieldBeganEditing:" destination="bP3-8W-1Lx" eventType="editingDidBegin" id="ZkB-sx-G4a"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
