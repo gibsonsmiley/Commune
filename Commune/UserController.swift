@@ -27,6 +27,8 @@ class UserController {
         }
     }
     
+    static var currentUserRooms: [Room] = []
+    
     static func fetchUserForIdentifier(identifier: String, completion: (user: User?) -> Void) {
         FirebaseController.dataAtEndpoint("users/\(identifier)") { (data) -> Void in
             if let json = data as? [String: AnyObject] {
@@ -92,17 +94,27 @@ class UserController {
     
     static func logoutUser() {
         FirebaseController.base.unauth()
-        UserController.currentUser = nil
+//        UserController.currentUser = nil
     }
     
-    static func observeRoomsForUserID(user: User, completion: (rooms: [Room]?) -> Void) {
-        guard let identifier = user.identifier else { completion(rooms: nil); return }
-        FirebaseController.base.childByAppendingPath("rooms").queryEqualToValue("user").queryEqualToValue(identifier).observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
-            if let roomDictionaries = snapshot.value as? [String: AnyObject] {
-                let rooms = roomDictionaries.flatMap({Room(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
-                completion(rooms: rooms)
+    static func observeRoomsForUserID(user: User, completion: () -> Void) {
+        guard let identifier = user.identifier else { completion(); return }
+        FirebaseController.base.childByAppendingPath("users/\(identifier)/rooms").observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            if let roomIDs = snapshot.value as? [String] {
+                let group = dispatch_group_create()
+                for roomID in roomIDs {
+                    dispatch_group_enter(group)
+                    RoomController.fetchRoomForID(roomID, completion: { (room) -> Void in
+                        if let room = room {
+                            currentUserRooms.append(room)
+                        }
+                        dispatch_group_leave(group)
+                    })                }
+                dispatch_group_notify(group, dispatch_get_main_queue(), { () -> Void in
+                    completion()
+                })
             } else {
-                completion(rooms: nil)
+                completion()
             }
         })
     }

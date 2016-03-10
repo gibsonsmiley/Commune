@@ -12,6 +12,8 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     @IBOutlet weak var roomNameTextField: UITextField!
     @IBOutlet weak var roomMemberTextField: UITextField!
+    @IBOutlet var memberPicker: UIPickerView!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     var room: String?
     var users: [User] = [] //String?
@@ -19,41 +21,38 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        roomMemberTextField.inputView = memberPicker
+        
+        self.memberPicker.dataSource = self
+        self.memberPicker.delegate = self
+        
+        toolbar.sizeToFit()
+        roomMemberTextField.inputAccessoryView = toolbar
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    MARK: - PickerView Methods
     
-    @IBAction func roomMemberTextFieldBeganEditing(sender: AnyObject) {
-        let userPicker = UIPickerView()
-        userPicker.delegate = self
-    }
-    
+//    Number of columns in the picker - I just need one
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 0
+        return 1
     }
-    
 
+//    Number of rows in the picker - this is based off of how many users exist
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        UserController.fetchAllUsers { (keys) -> Void in
-            return keys.count
-        }
-        return 0
+        return users.count
     }
     
-    func convertMembersToUser(members: String) -> [User] {
-//        Some magical beautiful function to convert a string into an array of users, using "," to seperate users
-        let string = roomMemberTextField.text
-        
-        let array = string?.characters.split{$0 == " "}.map(String.init)
-        
-//        Need to assign the objects in the array to users by their username
-        
-        return self.users
+//    The name of each row - this will be the users' usernames
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.users[row].username
     }
+    
+//    Capture the data each row represents - this may go into the toolbarAddButton action. Otherwise this method should be calling on the above method for data
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+    
+//    MARK: - Action Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         room = roomNameTextField.text
@@ -63,7 +62,7 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
         return true
     }
     
-    @IBAction func doneButtonTapped(sender: AnyObject) {
+    @IBAction func createButtonTapped(sender: AnyObject) {
         self.view.window?.endEditing(true)
         if let room = room {
             RoomController.createRoom(users, name: room, completion: { (room) -> Void in
@@ -85,6 +84,16 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func toolbarAddButtonTapped(sender: AnyObject) {
+//        whatever the picker is currently presenting is added to the member text field
+        let index = self.memberPicker.selectedRowInComponent(0)
+        let username = self.users[index]
+    }
+
+    @IBAction func toolbarDoneButtonTapped(sender: AnyObject) {
+        roomMemberTextField.resignFirstResponder()
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -10,12 +10,32 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var rooms: [Room] = []
+    var rooms: [Room] {
+        return UserController.currentUserRooms
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-   
+        UserController.createUser("email@email.com", username: "TestUser1", password: "1234") { (success, user) -> Void in
+            if let firstUser = user {
+                UserController.createUser("emailed@emailed.com", username: "TestUser2", password: "1234", completion: { (success, user) -> Void in
+                    if let secondUser = user {
+                        RoomController.createRoom([firstUser, secondUser], name: "TestRoom", completion: { (room) -> Void in
+                            if let room = room {
+                                PostController.createPost("Test post, please ignore", sender: firstUser, room: room, completion: { (post) -> Void in
+                                    if let post = post {
+                                        print(post)
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        }
+        
+        loadRoomsForUser(UserController.currentUser)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,13 +47,8 @@ class HomeTableViewController: UITableViewController {
     }
     
     func loadRoomsForUser(user: User) {
-        UserController.observeRoomsForUserID(user) { (rooms) -> Void in
-            if let rooms = rooms {
-                self.rooms = rooms
-                self.tableView.reloadData()
-            } else {
-                self.createAlert("Something went wrong while trying to load all your rooms! Please try again.", success: false)
-            }
+        UserController.observeRoomsForUserID(user) { () -> Void in
+            self.tableView.reloadData()
         }
     }
 
@@ -67,7 +82,7 @@ class HomeTableViewController: UITableViewController {
         let rooms = self.rooms[indexPath.row]
         
         cell.textLabel?.text = rooms.name
-        cell.detailTextLabel?.text = String(rooms.users)
+        cell.detailTextLabel?.text = String(rooms.users) //// I want this to just be a string of usernames
         
         return cell
     }
