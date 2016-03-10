@@ -21,8 +21,10 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if UserController.currentUser == nil {
-            performSegueWithIdentifier("authModalSegue", sender: self)
+        if let currentUser = UserController.currentUser {
+            print("\(currentUser.identifier) is signed in")
+        } else {
+           performSegueWithIdentifier("authModalSegue", sender: self)
         }
     }
 
