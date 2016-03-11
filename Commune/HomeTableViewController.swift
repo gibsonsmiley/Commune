@@ -39,8 +39,9 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
         if let currentUser = UserController.currentUser {
-            print("\(currentUser.identifier) is signed in")
+            return
         } else {
            performSegueWithIdentifier("authModalSegue", sender: self)
         }

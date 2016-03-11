@@ -11,11 +11,21 @@ import UIKit
 class RoomTableViewController: UITableViewController {
     
     var room: Room?
-    var posts: [Post] = []
+    var posts: [Post] {
+        return RoomController.posts
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadPostsForRoom(room!)
+    }
+    
+    func loadPostsForRoom(room: Room) {
+        RoomController.observePostsForRoomID(room) { () -> Void in
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source

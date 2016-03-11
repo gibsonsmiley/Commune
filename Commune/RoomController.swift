@@ -10,14 +10,27 @@ import Foundation
 
 class RoomController {
     
-    static func observePostsForRoomID(roomID: String, completion: (posts: [Post]?) -> Void) {
-        FirebaseController.base.childByAppendingPath("posts").queryOrderedByChild("room").queryEqualToValue(roomID).observeEventType(.Value, withBlock: { (snapshot) -> Void in
-            if let postDictionaries = snapshot.value as? [String: AnyObject] {
-                let posts = postDictionaries.flatMap({Post(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
-                let orderedPosts = PostController.orderPosts(posts)
-                completion(posts: orderedPosts)
+    static var posts: [Post] = []
+    
+    static func observePostsForRoomID(room: Room, completion: () -> Void) {
+        guard let identifier = room.identifier else { completion(); return }
+        FirebaseController.base.childByAppendingPath("rooms/\(identifier)/posts").observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            if let postIDs = snapshot.value as? [String] {
+                let roomGroup = dispatch_group_create()
+                for postID in postIDs {
+                    dispatch_group_enter(roomGroup)
+                    PostController.postFromIdentifier(postID, completion: { (post) -> Void in
+                        if let post = post {
+                            posts.append(post)
+                        }
+                        dispatch_group_leave(roomGroup)
+                    })
+                    dispatch_group_notify(roomGroup, dispatch_get_main_queue(), { () -> Void in
+                        completion()
+                    })
+                }
             } else {
-                completion(posts: nil)
+                completion()
             }
         })
     }

@@ -13,69 +13,64 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var roomNameTextField: UITextField!
     @IBOutlet weak var roomMemberTextField: UITextField!
     @IBOutlet var memberPicker: UIPickerView!
-    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet var toolbar: UIToolbar!
     
-    var room: String?
-    var users: [User] = [] //String?
+    var room: Room?
+    var name: String?
+    var users: [User] = []
+    var recipients: [User] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         roomMemberTextField.inputView = memberPicker
-        
-        self.memberPicker.dataSource = self
-        self.memberPicker.delegate = self
-        
         toolbar.sizeToFit()
         roomMemberTextField.inputAccessoryView = toolbar
+       
+        UserController.fetchAllUsers { (users) -> Void in
+            if let users = users {
+                self.users = users
+            } else {
+                self.users = []
+            }
+        }
     }
-
+    
 //    MARK: - PickerView Methods
     
-//    Number of columns in the picker - I just need one
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
 
-//    Number of rows in the picker - this is based off of how many users exist
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return users.count
     }
     
-//    The name of each row - this will be the users' usernames
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.users[row].username
     }
     
-//    Capture the data each row represents - this may go into the toolbarAddButton action. Otherwise this method should be calling on the above method for data
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
     }
+    
     
 //    MARK: - Action Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        room = roomNameTextField.text
-//        users = roomMemberTextField.text
         roomNameTextField.resignFirstResponder()
         roomMemberTextField.resignFirstResponder()
         return true
     }
     
-    @IBAction func createButtonTapped(sender: AnyObject) {
+    @IBAction func doneButtonTapped(sender: AnyObject) {
+        name = roomNameTextField.text!
         self.view.window?.endEditing(true)
-        if let room = room {
-            RoomController.createRoom(users, name: room, completion: { (room) -> Void in
+            RoomController.createRoom(recipients, name: roomNameTextField.text!, completion: { (room) -> Void in
                 if room != nil {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
-                    let failedAlert = UIAlertController(title: "Failed!", message: "The room couldn't be created! Please try again.", preferredStyle: .Alert)
-                    failedAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(failedAlert, animated: true, completion: nil)
+                    print("Failed to create room")
                 }
             })
-        }
-        
 //        HomeTableViewController.performSegueWithIdentifier("toRoomView", sender: HomeTableViewController())
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -85,9 +80,15 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
 
     @IBAction func toolbarAddButtonTapped(sender: AnyObject) {
-//        whatever the picker is currently presenting is added to the member text field
         let index = self.memberPicker.selectedRowInComponent(0)
-        let username = self.users[index]
+        let users = self.users[index]
+        self.recipients.append(users)
+        
+        var participantsText = ""
+        for recipient in recipients {
+            participantsText += recipient.username + ", "
+        }
+        roomMemberTextField.text = participantsText
     }
 
     @IBAction func toolbarDoneButtonTapped(sender: AnyObject) {

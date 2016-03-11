@@ -17,7 +17,7 @@ struct Post: FirebaseType {
     let senderID: String
     var sender: User?
     let roomID: String
-    let text: String
+    var text: String
     var identifier: String?
     var endpoint: String {
         return "posts"

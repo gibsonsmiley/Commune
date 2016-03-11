@@ -38,13 +38,13 @@
                                         <rect key="frame" x="0.0" y="35" width="440" height="35"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.34901960780000002" blue="0.32549019610000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oyP-9o-IKM">
                                         <rect key="frame" x="0.0" y="70" width="440" height="35"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.34901960780000002" blue="0.32549019610000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hE-tz-3pH">
                                         <rect key="frame" x="0.0" y="105" width="440" height="35"/>
@@ -82,19 +82,19 @@
                                         <rect key="frame" x="0.0" y="35" width="440" height="35"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.34901960780000002" blue="0.32549019610000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNv-SK-2Ok">
                                         <rect key="frame" x="0.0" y="70" width="440" height="35"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.34901960780000002" blue="0.32549019610000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEr-T2-D0d">
                                         <rect key="frame" x="0.0" y="105" width="440" height="35"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.34901960780000002" blue="0.32549019610000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMj-HU-YkL">
                                         <rect key="frame" x="0.0" y="140" width="440" height="35"/>
@@ -269,35 +269,27 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Room Member(s)" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="wV9-Md-Qbj">
-                                <rect key="frame" x="20" y="204" width="560" height="25"/>
+                                <rect key="frame" x="20" y="211" width="560" height="25"/>
                                 <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXm-Hq-8aL">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Done" id="MWQ-sU-cFB">
-                                        <connections>
-                                            <action selector="toolbarDoneButtonTapped:" destination="bP3-8W-1Lx" id="W1S-qa-ybj"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="94C-SY-vdN"/>
-                                    <barButtonItem title="Add" id="8Y3-Tb-6Kw">
-                                        <connections>
-                                            <action selector="toolbarAddButtonTapped:" destination="bP3-8W-1Lx" id="zl6-rR-SLr"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_________________________________________" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8E-PS-kRo">
+                                <rect key="frame" x="152" y="181" width="296" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wV9-Md-Qbj" firstAttribute="top" secondItem="O8E-PS-kRo" secondAttribute="bottom" constant="9" id="1CX-j8-USe"/>
                             <constraint firstItem="1dm-V5-lTh" firstAttribute="top" secondItem="smD-Ij-2NL" secondAttribute="bottom" constant="83" id="1lZ-YW-mz7"/>
-                            <constraint firstItem="wV9-Md-Qbj" firstAttribute="top" secondItem="1dm-V5-lTh" secondAttribute="bottom" constant="18" id="Hk4-cB-nkY"/>
+                            <constraint firstItem="wV9-Md-Qbj" firstAttribute="top" secondItem="1dm-V5-lTh" secondAttribute="bottom" constant="25" id="Hk4-cB-nkY"/>
                             <constraint firstItem="1dm-V5-lTh" firstAttribute="leading" secondItem="wV9-Md-Qbj" secondAttribute="leading" id="Kfn-sx-bEs"/>
                             <constraint firstItem="1dm-V5-lTh" firstAttribute="leading" secondItem="mOR-Gs-F45" secondAttribute="leadingMargin" id="SKl-U2-oBw"/>
                             <constraint firstItem="1dm-V5-lTh" firstAttribute="trailing" secondItem="wV9-Md-Qbj" secondAttribute="trailing" id="bM1-Gd-nJL"/>
                             <constraint firstItem="1dm-V5-lTh" firstAttribute="trailing" secondItem="mOR-Gs-F45" secondAttribute="trailingMargin" id="pQH-vt-l7t"/>
+                            <constraint firstItem="O8E-PS-kRo" firstAttribute="centerX" secondItem="1dm-V5-lTh" secondAttribute="centerX" id="qkT-gd-H0X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Room" id="ddz-tM-7Bb">
@@ -316,13 +308,34 @@
                         <outlet property="memberPicker" destination="9e0-by-Gus" id="Wsw-nU-h9v"/>
                         <outlet property="roomMemberTextField" destination="wV9-Md-Qbj" id="BCe-zS-OT1"/>
                         <outlet property="roomNameTextField" destination="1dm-V5-lTh" id="vx7-wq-dRC"/>
-                        <outlet property="toolbar" destination="hXm-Hq-8aL" id="iLp-8T-Tcn"/>
+                        <outlet property="toolbar" destination="Jax-kl-ry3" id="1ez-oA-57z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8G-9o-Rck" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Jax-kl-ry3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="Done" id="iT3-b7-Ghg">
+                            <connections>
+                                <action selector="toolbarDoneButtonTapped:" destination="bP3-8W-1Lx" id="haW-9x-biB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HJM-8v-fG4"/>
+                        <barButtonItem title="Add" id="UdP-Qh-Bg9">
+                            <connections>
+                                <action selector="toolbarAddButtonTapped:" destination="bP3-8W-1Lx" id="DIo-0R-yee"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
                 <pickerView contentMode="scaleToFill" id="9e0-by-Gus">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <outlet property="dataSource" destination="bP3-8W-1Lx" id="dhH-Gx-alG"/>
+                        <outlet property="delegate" destination="bP3-8W-1Lx" id="qkD-Qo-D9u"/>
+                    </connections>
                 </pickerView>
             </objects>
             <point key="canvasLocation" x="2879" y="-222"/>

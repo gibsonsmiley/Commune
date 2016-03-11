@@ -41,13 +41,13 @@ class UserController {
         }
     }
     
-    static func fetchAllUsers(completion: (keys: [String]) -> Void) {
+    static func fetchAllUsers(completion: (users: [User]?) -> Void) {
         FirebaseController.observeDataAtEndpoint("users") { (data) -> Void in
-            if let users = data as? [String: AnyObject] {
-                let userKeys = Array(users.keys)
-                completion(keys: userKeys)
+            if let json = data as? [String: AnyObject] {
+                let users = json.flatMap({User(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
+                completion(users: users)
             } else {
-                completion(keys: [])
+                completion(users: [])
             }
         }
     }
