@@ -10,7 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var rooms: [Room] {
+    var rooms: [Room]? {
         return UserController.currentUserRooms
     }
 
@@ -34,8 +34,9 @@ class HomeTableViewController: UITableViewController {
                 })
             }
         }
-        
+        if UserController.currentUser != nil {
         loadRoomsForUser(UserController.currentUser)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,16 +76,21 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rooms.count
+        return rooms!.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("roomCell", forIndexPath: indexPath)
-        let rooms = self.rooms[indexPath.row]
+        let rooms = self.rooms![indexPath.row]
+        
+        let roomMemberArray = rooms.users
+        var roomMembers = ""
+        for users in roomMemberArray {
+            roomMembers += users.username + ", "
+        }
         
         cell.textLabel?.text = rooms.name
-        cell.detailTextLabel?.text = String(rooms.users) //// I want this to just be a string of usernames
-        
+        cell.detailTextLabel?.text = roomMembers
         return cell
     }
 
@@ -93,7 +99,7 @@ class HomeTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toRoomView" {
             if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
-                let room = rooms[indexPath.row]
+                let room = rooms![indexPath.row]
                 
                 let destinationViewController = segue.destinationViewController as? RoomTableViewController
                 destinationViewController?.room = room

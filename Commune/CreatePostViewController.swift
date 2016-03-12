@@ -23,7 +23,7 @@ class CreatePostViewController: UIViewController {
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
 //        text = postTextView.text
-//        PostController.createPost(text!, sender: UserController.currentUser, room: sender) { (post) -> Void in
+//        PostController.createPost(text!, sender: UserController.currentUser, room: HomeTableViewController.rooms) { (post) -> Void in
 //            if post != nil {
 //                self.dismissViewControllerAnimated(true, completion: nil)
 //            } else {

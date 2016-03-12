@@ -20,8 +20,10 @@ class UserController {
             if let newValue = newValue {
                 NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: sharedInstance.kUser)
                 NSUserDefaults.standardUserDefaults().synchronize()
+
+                newValue.saveUserToDefaults()
             } else {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(sharedInstance.kUser)
+                NSUserDefaults.standardUserDefaults().removeObjectForKey(UserController.sharedInstance.kUser)
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
         }
@@ -61,7 +63,7 @@ class UserController {
                 print("User ID: \(authData.uid) authenticated successfully")
                 UserController.fetchUserForIdentifier(authData.uid, completion: { (user) -> Void in
                     if let user = user {
-                        currentUser = user
+                        self.currentUser = user
                     }
                     completion(success: true, user: user)
                 })

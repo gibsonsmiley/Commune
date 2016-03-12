@@ -13,10 +13,17 @@ struct User: FirebaseType {
     let kUsername = "username"
     let kEmail = "email"
     let kRooms = "rooms"
+    let kUser = "users"
     
     let username: String
     let email: String
-    var roomIDs: [String] = []
+    var roomIDs: [String] = [] {
+        didSet {
+            if self.identifier == UserController.currentUser.identifier {
+                self.saveUserToDefaults()
+            }
+        }
+    }
     var rooms: [Room] = []
     var identifier: String?
     var endpoint: String {
@@ -29,13 +36,22 @@ struct User: FirebaseType {
     init(username: String, email: String, identifier: String? = nil) {
         self.username = username
         self.email = email
+        self.identifier = identifier
     }
     
     init?(json: [String : AnyObject], identifier: String) {
         guard let username = json[kUsername] as? String,
-            let email = json[kEmail] as? String else { return nil }
+            let email = json[kEmail] as? String,
+        let roomDictionary = json[kRooms] as? [String: AnyObject] else { return nil }
+        let rooms = Array(roomDictionary.keys)
         self.username = username
         self.email = email
         self.identifier = identifier
+        self.roomIDs = rooms
+    }
+    
+    func saveUserToDefaults() {
+        NSUserDefaults.standardUserDefaults().setValue(self.jsonValue, forKey: kUser)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
