@@ -71,6 +71,16 @@ class AuthPageViewController: UIViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        loginEmailTextField.resignFirstResponder()
+        loginPasswordTextField.resignFirstResponder()
+        signupEmailTextField.resignFirstResponder()
+        signupPasswordTextField.resignFirstResponder()
+        signupUsernameTextField.resignFirstResponder()
+        return true
+    }
+    
+    
     /*
     // MARK: - Navigation
 

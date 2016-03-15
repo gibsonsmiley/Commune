@@ -42,6 +42,7 @@ class RoomController {
             for var user in users {
                 user.roomIDs.append(identifier)
                 user.save()
+                print("room created successfully")
             }
         }
     }

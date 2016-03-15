@@ -34,15 +34,14 @@ class HomeTableViewController: UITableViewController {
                 })
             }
         }
-        
+        if UserController.currentUser != nil {
         loadRoomsForUser(UserController.currentUser)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
-        if let currentUser = UserController.currentUser {
-            return
-        } else {
+        if UserController.currentUser == nil {
            performSegueWithIdentifier("authModalSegue", sender: self)
         }
     }
@@ -82,8 +81,14 @@ class HomeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("roomCell", forIndexPath: indexPath)
         let rooms = self.rooms[indexPath.row]
         
+        let roomMemberArray = rooms.users
+        var roomMembers = ""
+        for users in roomMemberArray {
+            roomMembers += users.username + ", "
+    }
+    
         cell.textLabel?.text = rooms.name
-        cell.detailTextLabel?.text = String(rooms.users) //// I want this to just be a string of usernames
+        cell.detailTextLabel?.text = roomMembers
         
         return cell
     }
