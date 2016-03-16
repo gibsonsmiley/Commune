@@ -10,7 +10,9 @@ import UIKit
 
 class RoomTableViewController: UITableViewController {
     
-    var room: Room?
+    static let sharedInstance = RoomTableViewController()
+    
+    var room: Room!
     var posts: [Post] {
         return RoomController.posts
     }
@@ -19,7 +21,8 @@ class RoomTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadPostsForRoom(room!)
+        loadPostsForRoom(room)
+        print("Current room is \(room)")
     }
     
     func loadPostsForRoom(room: Room) {
@@ -49,6 +52,7 @@ class RoomTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toCreatePost" {
             let destinationViewController = segue.destinationViewController as? CreatePostViewController
+            let room = self.room
             destinationViewController?.room = room
         }
     }

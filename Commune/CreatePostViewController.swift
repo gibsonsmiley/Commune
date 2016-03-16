@@ -16,15 +16,11 @@ class CreatePostViewController: UIViewController {
     var post: Post?
     var text: String?
     
-//    if room == nil {
-//    print("Current room is nil")
-//    } else {
-//    currentRoom = room
-//    print("Current room is NOT nil. Hurray!")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Current room is \(room)")
+        
+        RoomTableViewController.sharedInstance.room = room
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {

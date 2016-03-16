@@ -115,6 +115,7 @@
 				F0F9FFE11C8E2C50005A2EE7 /* View Controllers */,
 				F0F9FFDE1C8E2C24005A2EE7 /* Model Controllers */,
 				F0F9FFD71C8E2529005A2EE7 /* Models */,
+				F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */,
 				F0F9FFB61C8E1C5D005A2EE7 /* LaunchScreen.storyboard */,
 				F0F9FFB91C8E1C5D005A2EE7 /* Info.plist */,
 			);
@@ -140,7 +141,6 @@
 				F0F9FFD11C8E250F005A2EE7 /* Post.swift */,
 				F0F9FFD31C8E2515005A2EE7 /* User.swift */,
 				F0F9FFD51C8E251A005A2EE7 /* Room.swift */,
-				F0F9FFB41C8E1C5D005A2EE7 /* Assets.xcassets */,
 			);
 			name = Models;
 			sourceTree = "<group>";

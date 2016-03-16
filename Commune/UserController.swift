@@ -54,7 +54,7 @@ class UserController {
     
     static func authenticateUser(email: String, password: String, completion: (success: Bool, user: User?) -> Void) {
         FirebaseController.base.authUser(email, password: password) { (error, authData) -> Void in
-            if error != nil {
+            if let error = error {
                 print("Error authenticating user: \(error.localizedDescription)")
                 completion(success: false, user: nil)
             } else {
@@ -109,7 +109,8 @@ class UserController {
                             currentUserRooms.append(room)
                         }
                         dispatch_group_leave(group)
-                    })                }
+                    })
+                }
                 dispatch_group_notify(group, dispatch_get_main_queue(), { () -> Void in
                     completion()
                 })

@@ -17,6 +17,7 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.reloadData()
         UserController.createUser("email@email.com", username: "TestUser1", password: "1234") { (success, user) -> Void in
             if let firstUser = user {
                 UserController.createUser("emailed@emailed.com", username: "TestUser2", password: "1234", completion: { (success, user) -> Void in
@@ -40,7 +41,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tableView.reloadData()
+        tableView.reloadData()
         if UserController.currentUser == nil {
            performSegueWithIdentifier("authModalSegue", sender: self)
         }
@@ -97,10 +98,9 @@ class HomeTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toRoomView" {
+            let destinationViewController = segue.destinationViewController as? RoomTableViewController
             if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
-                let room = rooms[indexPath.row]
-                
-                let destinationViewController = segue.destinationViewController as? RoomTableViewController
+                let room = UserController.currentUserRooms[indexPath.row]
                 destinationViewController?.room = room
             }
         }
