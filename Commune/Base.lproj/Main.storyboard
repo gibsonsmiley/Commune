@@ -158,13 +158,36 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gj-II-2Gi">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="R9E-VQ-dut"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="LYV-K5-1cu">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hab-bM-hoF">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="Qv5-Uo-ftL" id="uMt-Zt-UxT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7BL-pq-ByD">
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="Qv5-Uo-ftL" id="3cB-if-Stf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3aE-O2-n3L" firstAttribute="top" secondItem="VKp-ht-ZiS" secondAttribute="bottom" constant="8" symbolic="YES" id="28R-Po-TuV"/>
+                            <constraint firstItem="3aE-O2-n3L" firstAttribute="top" secondItem="VKp-ht-ZiS" secondAttribute="bottom" constant="52" id="28R-Po-TuV"/>
                             <constraint firstItem="beA-gl-e7w" firstAttribute="top" secondItem="3aE-O2-n3L" secondAttribute="bottom" constant="298" id="DN4-gb-19f"/>
+                            <constraint firstAttribute="trailing" secondItem="6gj-II-2Gi" secondAttribute="trailing" id="QYh-Ke-nA8"/>
                             <constraint firstItem="3aE-O2-n3L" firstAttribute="trailing" secondItem="acc-fO-BKb" secondAttribute="trailingMargin" id="ika-W5-fHO"/>
+                            <constraint firstItem="6gj-II-2Gi" firstAttribute="leading" secondItem="acc-fO-BKb" secondAttribute="leading" id="n3u-sA-EBr"/>
                             <constraint firstItem="3aE-O2-n3L" firstAttribute="leading" secondItem="acc-fO-BKb" secondAttribute="leadingMargin" id="yWn-IC-DRq"/>
+                            <constraint firstItem="6gj-II-2Gi" firstAttribute="top" secondItem="acc-fO-BKb" secondAttribute="top" constant="20" id="ydu-U9-bP5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Post" id="YY3-Ba-wfb">
@@ -382,7 +405,7 @@
                     <navigationItem key="navigationItem" title="Room" id="gHD-BW-HeW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7yh-aJ-SjN">
                             <connections>
-                                <segue destination="0qr-Od-nbG" kind="presentation" identifier="toCreatePost" id="sGR-m7-z80"/>
+                                <segue destination="Qv5-Uo-ftL" kind="presentation" identifier="toCreatePost" id="W1Z-iA-n5B"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -426,24 +449,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEi-DS-cDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2879" y="-908"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="gz3-bn-OlL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0qr-Od-nbG" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZLq-c3-AT9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Qv5-Uo-ftL" kind="relationship" relationship="rootViewController" id="hDU-kJ-kaf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="amH-kH-xSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3631" y="-908"/>
         </scene>
     </scenes>
 </document>

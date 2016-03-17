@@ -94,24 +94,25 @@ class UserController {
     
     static func logoutUser() {
         FirebaseController.base.unauth()
-//        UserController.currentUser = nil
     }
     
     static func observeRoomsForUserID(user: User, completion: () -> Void) {
         guard let identifier = user.identifier else { completion(); return }
         FirebaseController.base.childByAppendingPath("users/\(identifier)/rooms").observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            var rooms: [Room] = []
             if let roomIDs = snapshot.value as? [String] {
                 let group = dispatch_group_create()
                 for roomID in roomIDs {
                     dispatch_group_enter(group)
                     RoomController.fetchRoomForID(roomID, completion: { (room) -> Void in
                         if let room = room {
-                            currentUserRooms.append(room)
+                            rooms.append(room)
                         }
                         dispatch_group_leave(group)
                     })
                 }
                 dispatch_group_notify(group, dispatch_get_main_queue(), { () -> Void in
+                    currentUserRooms = rooms
                     completion()
                 })
             } else {

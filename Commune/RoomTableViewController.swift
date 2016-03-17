@@ -13,9 +13,6 @@ class RoomTableViewController: UITableViewController {
     static let sharedInstance = RoomTableViewController()
     
     var room: Room!
-    var posts: [Post] {
-        return RoomController.posts
-    }
     
 
     override func viewDidLoad() {
@@ -23,6 +20,10 @@ class RoomTableViewController: UITableViewController {
         
         loadPostsForRoom(room)
         print("Current room is \(room)")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+
     }
     
     func loadPostsForRoom(room: Room) {
@@ -34,16 +35,14 @@ class RoomTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return RoomController.posts.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath)
-        let posts = self.posts[indexPath.row]
-
+        let posts = RoomController.posts[indexPath.row]
         cell.textLabel?.text = posts.text
         cell.detailTextLabel?.text = posts.sender?.username
-        
         return cell
     }
 

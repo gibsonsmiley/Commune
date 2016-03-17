@@ -14,22 +14,10 @@ class RoomController {
     
     static func observePostsForRoomID(room: Room, completion: () -> Void) {
         guard let identifier = room.identifier else { completion(); return }
-        FirebaseController.base.childByAppendingPath("rooms/\(identifier)/posts").observeEventType(.Value, withBlock: { (snapshot) -> Void in
-            if let postIDs = snapshot.value as? [String] {
-                let roomGroup = dispatch_group_create()
-                for postID in postIDs {
-                    dispatch_group_enter(roomGroup)
-                    PostController.postFromIdentifier(postID, completion: { (post) -> Void in
-                        if let post = post {
-                            posts.append(post)
-                        }
-                        dispatch_group_leave(roomGroup)
-                    })
-                    dispatch_group_notify(roomGroup, dispatch_get_main_queue(), { () -> Void in
-                        completion()
-                    })
-                }
-            } else {
+        FirebaseController.base.childByAppendingPath("posts").queryOrderedByChild("room").queryEqualToValue("\(identifier)").observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            if let postDictionaries = snapshot.value as? [String: AnyObject] {
+                let posts = postDictionaries.flatMap({Post(json: $0.1 as! [String: AnyObject], identifier: $0.0)})
+                self.posts = posts
                 completion()
             }
         })
@@ -45,6 +33,7 @@ class RoomController {
                 print("room created successfully")
             }
         }
+        completion(room: room)
     }
 
     static func deleteRoom(room: Room) {

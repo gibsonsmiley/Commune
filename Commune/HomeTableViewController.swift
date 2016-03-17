@@ -87,10 +87,8 @@ class HomeTableViewController: UITableViewController {
         for users in roomMemberArray {
             roomMembers += users.username + ", "
     }
-    
         cell.textLabel?.text = rooms.name
         cell.detailTextLabel?.text = roomMembers
-        
         return cell
     }
 

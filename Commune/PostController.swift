@@ -12,10 +12,6 @@ class PostController {
     static let sharedInstance = PostController()
     var posts: [Post] = []
     
-//    static func fetchPostsForUser(user: User, completion: (post: [Post]?) -> Void) {
-//        //Is this necessary?
-//    }
-    
     static func createPost(text: String, sender: User, room: Room, completion: (post: Post?) -> Void) {
         guard let senderID = sender.identifier, roomID = room.identifier else { completion(post: nil); return }
         var post = Post(senderID: senderID, roomID: roomID, text: text)

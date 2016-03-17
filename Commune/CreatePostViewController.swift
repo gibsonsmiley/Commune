@@ -14,18 +14,22 @@ class CreatePostViewController: UIViewController {
     
     var room: Room?
     var post: Post?
-    var text: String?
+    var text: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Current room is \(room)")
-        
-        RoomTableViewController.sharedInstance.room = room
+    }
+    
+    func textViewShouldReturn(textView: UITextView) -> Bool {
+        postTextView.resignFirstResponder()
+        return true
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         text = postTextView.text
-        PostController.createPost(text!, sender: UserController.currentUser, room: room!) { (post) -> Void in
+        self.view.window?.endEditing(true)
+        PostController.createPost(text, sender: UserController.currentUser, room: room!) { (post) -> Void in
             if post != nil {
                 print("Post successfully created")
                 self.dismissViewControllerAnimated(true, completion: nil)

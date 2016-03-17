@@ -25,7 +25,7 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
         roomMemberTextField.inputView = memberPicker
         toolbar.sizeToFit()
         roomMemberTextField.inputAccessoryView = toolbar
-       
+               
         UserController.fetchAllUsers { (users) -> Void in
             if let users = users {
                 self.users = users

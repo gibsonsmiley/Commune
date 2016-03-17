@@ -33,9 +33,11 @@ struct User: FirebaseType {
     
     init?(json: [String : AnyObject], identifier: String) {
         guard let username = json[kUsername] as? String,
-            let email = json[kEmail] as? String else { return nil }
+            let email = json[kEmail]as? String,
+            roomIDs = json[kRooms] as? [String] else { return nil }
         self.username = username
         self.email = email
+        self.roomIDs = roomIDs
         self.identifier = identifier
     }
 }
