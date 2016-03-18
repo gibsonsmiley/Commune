@@ -18,7 +18,6 @@ class CreatePostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Current room is \(room)")
     }
     
     func textViewShouldReturn(textView: UITextView) -> Bool {
@@ -31,7 +30,6 @@ class CreatePostViewController: UIViewController {
         self.view.window?.endEditing(true)
         PostController.createPost(text, sender: UserController.currentUser, room: room!) { (post) -> Void in
             if post != nil {
-                print("Post successfully created")
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 print("Failed to save post")

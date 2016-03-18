@@ -25,9 +25,11 @@ class RoomController {
     
     static func createRoom(users: [User], name: String, completion: (room: Room?) -> Void) {
         var room = Room(name: name, users: users)
+        room.users.append(UserController.currentUser)
+        room.userIDs.append(UserController.currentUser.identifier!)
         room.save()
         if let identifier = room.identifier {
-            for var user in users {
+            for var user in room.users {
                 user.roomIDs.append(identifier)
                 user.save()
                 print("room created successfully")

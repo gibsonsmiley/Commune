@@ -42,11 +42,11 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return users.count
+        return users.filter({$0.identifier != UserController.currentUser.identifier}).count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.users[row].username
+        return self.users.filter({$0.identifier != UserController.currentUser.identifier})[row].username
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -64,15 +64,19 @@ class CreateRoomViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBAction func doneButtonTapped(sender: AnyObject) {
         name = roomNameTextField.text!
         self.view.window?.endEditing(true)
+//        self.recipients.append(UserController.currentUser)
             RoomController.createRoom(recipients, name: roomNameTextField.text!, completion: { (room) -> Void in
-                if room != nil {
+                if let room = room {
+                    self.room = room
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    let presentingViewController = self.presentingViewController as? UINavigationController
+                    presentingViewController?.viewControllers.first?.performSegueWithIdentifier("toRoomView", sender: self)
                 } else {
                     print("Failed to create room")
                 }
             })
 //        HomeTableViewController.performSegueWithIdentifier("toRoomView", sender: HomeTableViewController())
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {

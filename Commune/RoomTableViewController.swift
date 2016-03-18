@@ -19,7 +19,6 @@ class RoomTableViewController: UITableViewController {
         super.viewDidLoad()
         
         loadPostsForRoom(room)
-        print("Current room is \(room)")
     }
     
     override func viewWillAppear(animated: Bool) {

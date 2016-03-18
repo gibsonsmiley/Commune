@@ -59,6 +59,13 @@ class AuthPageViewController: UIViewController {
             }
         }
     }
+    @IBAction func userTappedView(sender: AnyObject) {
+        loginEmailTextField.resignFirstResponder()
+        loginPasswordTextField.resignFirstResponder()
+        signupEmailTextField.resignFirstResponder()
+        signupPasswordTextField.resignFirstResponder()
+        signupUsernameTextField.resignFirstResponder()
+    }
     
     func createAlert(message: String, success: Bool) {
         var titleString = ""

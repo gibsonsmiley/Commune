@@ -16,7 +16,15 @@ struct User: FirebaseType {
     
     let username: String
     let email: String
-    var roomIDs: [String] = []
+    var roomIDs: [String] = [] {
+        didSet {
+            if let identifier = identifier {
+                if identifier == UserController.currentUser.identifier {
+                    self.saveToNSUserDefaults()
+                }
+            }
+        }
+    }
     var rooms: [Room] = []
     var identifier: String?
     var endpoint: String {
@@ -39,5 +47,10 @@ struct User: FirebaseType {
         self.email = email
         self.roomIDs = roomIDs
         self.identifier = identifier
+    }
+    
+    func saveToNSUserDefaults() {
+        NSUserDefaults.standardUserDefaults().setValue(self.jsonValue, forKey: UserController.sharedInstance.kUser)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

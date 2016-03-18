@@ -40,8 +40,8 @@ struct Room: FirebaseType {
         guard let name = json[kName] as? String else { return nil }
         self.name = name
         self.identifier = identifier
-        if let userDictionary = json[kUsers] as? [String: AnyObject] {
-            userIDs = Array(userDictionary.keys)
+        if let users = json[kUsers] as? [String] {
+            self.userIDs = users
         }
     }
 }
